@@ -1,9 +1,7 @@
+import{getTodos} from '../lib/todoServices'
+
 const initState = {
-    todos: [
-        {id: 1, name: 'Added todo', isComplete: false},
-        {id: 2, name: 'Added 2nd todo', isComplete: false},
-        {id: 3, name: 'Added 3rd todo', isComplete: false},
-    ],
+    todos: [],
     currentTodo: ''
 }
 
@@ -11,6 +9,13 @@ const TODO_ADD = 'TODO_ADD'
 const CURRENT_UPDATE = 'CURRENT_UPDATE'
 
 export const updateCurrent = (val) => ({type:CURRENT_UPDATE, payload: val})
+
+export const fetchTodos = () => {
+    return () => {
+        getTodos()
+            .then(todos => console.log(todos))
+    }
+}
 
 export default (state = initState, action) => {
     switch(action.type) {
